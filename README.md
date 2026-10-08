@@ -6,7 +6,7 @@ This drone is desing to be budget friendly, all parts can be bought on `Aliexpre
 - EST32 C3 mini
 - `Aliexpres` 1s-2s mini ESC
 - 2s li-po battery
-- 2s 1503 brushless engines
+- 2s 1503 brushless motor
 - DC Buck Converter 5-30V to 5V
 - BMI160 6-Axis Rate Gyro / Accelerometer sensor
 - 3d-printed frame
