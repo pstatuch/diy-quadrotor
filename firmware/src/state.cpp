@@ -28,6 +28,12 @@ void setDroneState(DroneState state) {
         case DroneState::ARMED:
             led.setPixelColor(0, led.Color(0, 255, 0));
             break;
+        case DroneState::ERROR:
+            led.setPixelColor(0, led.Color(255, 0, 0));
+            break;
+        case DroneState::DATA_RECEIVED:
+            led.setPixelColor(0, led.Color(255, 255, 255));
+            break;
     }
 
     led.show();

@@ -19,8 +19,31 @@ Firmware uses ESP32 C3 mini onboard diode to indicate current state, check state
 
  |Diode color| State | Controller paired | ESC armed | 
  | --- | --- | --| -- |
+ | Red | ERROR | N/A | N/A |
  | Yellow | Disconnected | no | no |
  | Blue | Connected | YES | no |
  | Green | Armed |  YES | YES |
+ | White | Data received | N/A | N/A |
+
+ states ERROR and DATA_RECEIVED represent events, not long running state and can happen at any time : 
+ - problem / success while reading gyro data
+ - problem / success while reading controller commands
+ - unexpected exception
+ - other
  
-    
+# Module integration
+## BMI160 gyro
+
+Protocol IC2
+
+connection
+```
+ ESP32         BMI160
+-------        -------
+| GND | -----> | GND |
+| 3v3 | -----> | 3V3 | 
+|  6  | -----> | SCL |
+|  7  | -----> | SDA | 
+```
+
+clock speed: 100 kHz

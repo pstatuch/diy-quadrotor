@@ -1,25 +1,33 @@
 #include <Arduino.h>
 #include "esc.h"
 #include "state.h"
+#include "gyro.h"
 
-
-DroneState currentState = DroneState::DISCONNECTED;
-
+BMI160 imu(0x69, 6, 7);
+IMUData imuData;
 
 void setup() {
     setupStateLED();
-    currentState = DroneState::DISCONNECTED;
-    setDroneState(currentState);
+    setDroneState(DroneState::DISCONNECTED);
+    
+    if (!imu.begin()) {
+        setDroneState(DroneState::ERROR);
+        while (true)
+            delay(1000);
+    }
+    setDroneState(DroneState::DISCONNECTED);
+
 }
 
 
 void loop() {
-
     // change state check
-    delay(5000);
-    currentState = currentState != DroneState::ARMED ? DroneState::ARMED : DroneState::CONNECTED;
-    setDroneState(currentState);
-    
+    if (imu.read(imuData)) {
+        setDroneState(DroneState::DATA_RECEIVED);
+        delay(100);
+    }
+
+    setDroneState(DroneState::ARMED);
+    delay(1000);
     
 }
-

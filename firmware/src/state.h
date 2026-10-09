@@ -2,9 +2,11 @@
 #define STATE_H
 
 enum class DroneState {
+    ERROR,
     DISCONNECTED,
     CONNECTED,
-    ARMED
+    ARMED,
+    DATA_RECEIVED
 };
 
 void setupStateLED();
