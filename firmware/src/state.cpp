@@ -1,5 +1,6 @@
 #include <Adafruit_NeoPixel.h>
 #include "state.h"
+#include "config.h"
 
 #define LED_PIN 10
 #define NUM_LEDS 1
