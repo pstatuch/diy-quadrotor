@@ -2,6 +2,7 @@
 #include "state.h"
 #include "config.h"
 
+
 #define NUM_LEDS 1
 
 #if defined( STATUS_LED_PIN ) && defined(STATUS_LED_RGB) 
@@ -59,7 +60,14 @@
                 break;
         }
     }
-
+#else
+    void setupStateLED() {
+        NOP();
+    }
+    
+    void setDroneState(DroneState state){
+        NOP();
+    }
 #endif
 
 

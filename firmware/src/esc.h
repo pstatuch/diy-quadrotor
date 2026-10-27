@@ -4,10 +4,10 @@
 #include "config.h"
 #include <Arduino.h>
 
-const uint8_t ESC_FL = 0;
-const uint8_t ESC_RL = 1;
-const uint8_t ESC_FR = 2;
-const uint8_t ESC_RR = 3;
+const uint8_t ESC_FL = ESC_FL_PIN;
+const uint8_t ESC_RL = ESC_RL_PIN;
+const uint8_t ESC_FR = ESC_FR_PIN;
+const uint8_t ESC_RR = ESC_RR_PIN;
 
 class EscController {
 public:
@@ -15,15 +15,13 @@ public:
 
     void begin();
 
-    // motor: indeks od 0 do 3
-    // pulseUs: długość impulsu sterującego w mikrosekundach
     void setMotorPulse(uint8_t motor, uint16_t pulseUs);
 
     // Ustawia jednakową przepustnicę dla wszystkich silników
     void setAllMotors(uint16_t pulseUs);
 
 private:
-    static constexpr uint8_t PWM_CHANNELS[MOTOR_COUNT] = {
+    inline static constexpr uint8_t PWM_CHANNELS[MOTOR_COUNT] = {
         ESC_FL, ESC_RL, ESC_FR, ESC_RR
     };
 

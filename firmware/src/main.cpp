@@ -7,10 +7,16 @@
 #include "debug.h"
 
 
+EscController esc;
 void setup() {
     DEBUG_BEGIN();
+    DEBUG_PRINTLN("Initializing... (Status LED)");
     setupStateLED();
+    DEBUG_PRINTLN("Status LED ready.");
     
+    DEBUG_PRINTLN("Initializing... (ESCs)");
+    esc.begin();
+    DEBUG_PRINTLN("ESCs ready");
 
     DEBUG_PRINT("Initializing drone status");
     setDroneState(DroneState::DISCONNECTED);
@@ -27,5 +33,12 @@ void loop(){
     setDroneState(DroneState::ARMED);
     DEBUG_PRINTLN("Switching state...(Armed)");
     delay(1000);
+
+    esc.setAllMotors(1000);
+    delay(1000);
+    esc.setAllMotors(1500);
+    delay(3000);
+    esc.setAllMotors( 1000);
+
 
 }
