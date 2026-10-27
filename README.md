@@ -23,4 +23,16 @@ Firmware uses ESP32 C3 mini onboard diode to indicate current state, check state
  | Blue | Connected | YES | no |
  | Green | Armed |  YES | YES |
  
-    
+## Radio receiver:
+## HelloRadio HR7E ELRS
+Features: 
+* 2.4GHz ELRS PWM receiver
+* Power Supply : DC 4.5-8.4V
+* Wireless Protocol Pre-installed ExpressLRS 3.3.0
+* Bus Interface	CRSF (4-wire for sensor expansion)
+communication UART
+
+## Radio transmitter
+
+## BetaFPV
+binding phrase - make sure is ame in your transmitter and receiver
