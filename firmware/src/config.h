@@ -18,6 +18,11 @@
   #error "No battery battery type selected"
 #endif
 
+// status diod setting
+// for RGB on-board diod please uncomment #define STATUS_LED_RBG
+//#define STATUS_LED_PIN 8
+//#define STATUS_LED_RGB
+
 // bind ESC pins
 #define ESC_FL_PIN 0
 #define ESC_RL_PIN 1

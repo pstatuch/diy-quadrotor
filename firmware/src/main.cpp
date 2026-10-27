@@ -4,22 +4,28 @@
 #include "state.h"
 #include "gyro.h"
 #include "receiver.h"
+#include "debug.h"
 
-BMI160 imu(0x69, 6, 7);
-IMUData imuData;
 
 void setup() {
+    DEBUG_BEGIN();
     setupStateLED();
-    setDroneState(DroneState::DISCONNECTED);
     
-    if (!imu.begin()) {
-        setDroneState(DroneState::ERROR);
-        while (true)
-            delay(1000);
-    }
-    setDroneState(DroneState::DISCONNECTED);
 
+    DEBUG_PRINT("Initializing drone status");
+    setDroneState(DroneState::DISCONNECTED);
+    delay(2000);
+    
 }
 
 void loop(){
+    setDroneState(DroneState::CONNECTED);
+    DEBUG_PRINTLN("Switching state...(Connected)");
+
+    delay(1000);
+    
+    setDroneState(DroneState::ARMED);
+    DEBUG_PRINTLN("Switching state...(Armed)");
+    delay(1000);
+
 }
