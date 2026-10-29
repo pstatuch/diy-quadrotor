@@ -1,6 +1,7 @@
 
 #include <Arduino.h>
 #include "config.h"
+#include "debug.h"
 
 constexpr int RX_PIN = RADIO_UART_RX_PIN;
 constexpr int TX_PIN = RADIO_UART_TX_PIN;
@@ -66,7 +67,6 @@ bool decodeChannels() {
 }
 
 void initReceiver() {
-    Serial.begin(115200);
 
     ReceiverSerial.begin(
         420000,
@@ -75,10 +75,10 @@ void initReceiver() {
         TX_PIN
     );
 
-    Serial.println("CRSF channel decoder started");
+    DEBUG_PRINTLN("CRSF channel decoder started");
 }
 
-void updateChanels() {
+uint16_t* updateChanels() {
     while (ReceiverSerial.available()) {
         uint8_t b = ReceiverSerial.read();
 
@@ -114,18 +114,16 @@ void updateChanels() {
                     lastPrint = millis();
 
                     for (int ch = 0; ch < 16; ch++) {
-                        Serial.printf(
-                            "CH%02d:%4u ",
-                            ch + 1,
-                            channels[ch]
-                        );
+                        DEBUG_PRINT("CH"+(ch + 1));
+                        DEBUG_PRINT(":"+channels[ch]);
                     }
 
-                    Serial.println();
+                    DEBUG_PRINTLN();
                 }
             }
 
             framePos = 0;
         }
     }
+    return channels;
 }

@@ -6,8 +6,9 @@
 #include "receiver.h"
 #include "debug.h"
 
-
 EscController esc;
+uint16_t* chanels;
+
 void setup() {
     DEBUG_BEGIN();
     DEBUG_PRINTLN("Initializing... (Status LED)");
@@ -18,27 +19,22 @@ void setup() {
     esc.begin();
     DEBUG_PRINTLN("ESCs ready");
 
-    DEBUG_PRINT("Initializing drone status");
+    DEBUG_PRINTLN("Initializing drone status");
     setDroneState(DroneState::DISCONNECTED);
-    delay(2000);
+    DEBUG_PRINTLN("Drone status: (Disconnected)");
+    
+
+    DEBUG_PRINTLN("Initializing connection with controller");
+    initReceiver();
+    setDroneState(DroneState::CONNECTED);
+    DEBUG_PRINTLN("Controller connected");
     
 }
 
 void loop(){
-    setDroneState(DroneState::CONNECTED);
-    DEBUG_PRINTLN("Switching state...(Connected)");
-
-    delay(1000);
     
-    setDroneState(DroneState::ARMED);
-    DEBUG_PRINTLN("Switching state...(Armed)");
-    delay(1000);
+    
+   chanels =  updateChanels();
 
-    esc.setAllMotors(1000);
-    delay(1000);
-    esc.setAllMotors(1500);
-    delay(3000);
-    esc.setAllMotors( 1000);
-
-
+   
 }

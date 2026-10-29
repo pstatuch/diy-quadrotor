@@ -36,3 +36,10 @@
 // bind RADIO receiver UART pins
 #define RADIO_UART_RX_PIN 20
 #define RADIO_UART_TX_PIN 21
+
+// chanel mapping
+#define THROTTLE_CHANELL = 1;
+#define YAW_CHANELL = 2;
+#define PITCH_CHANELL = 3;
+#define ROLL_CHANELL = 4;
+#define ARM_CHANELL = 5;

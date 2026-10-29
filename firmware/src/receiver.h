@@ -5,4 +5,4 @@
 
 
 void initReceiver();
-void updateChanels();
+uint16_t* updateChanels();
