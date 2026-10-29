@@ -19,6 +19,7 @@ public:
 
     // Ustawia jednakową przepustnicę dla wszystkich silników
     void setAllMotors(uint16_t pulseUs);
+    
 
 private:
     inline static constexpr uint8_t PWM_CHANNELS[MOTOR_COUNT] = {
@@ -34,3 +35,5 @@ private:
 
     bool initialized = false;
 };
+
+uint16_t throttleToPwm(float throttle);

@@ -28,13 +28,19 @@ void setup() {
     initReceiver();
     setDroneState(DroneState::CONNECTED);
     DEBUG_PRINTLN("Controller connected");
-    
+    chanels =  updateChanels();
 }
 
 void loop(){
     
     
-   chanels =  updateChanels();
-
+   updateChanels();
+   
+   float throttle = (chanels[2] - 170.0f) / (1785.0f-185.0f);
+   Serial.print(throttle);
+   Serial.print(" ");
+   Serial.print(chanels[2]);
+   Serial.println("");
+   esc.setAllMotors(throttleToPwm(throttle));
    
 }

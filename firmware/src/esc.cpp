@@ -82,3 +82,12 @@ void EscController::setAllMotors(uint16_t pulseUs) {
         setMotorPulse(i, pulseUs);
     }
 }
+
+uint16_t throttleToPwm(float throttle) {
+    throttle = constrain(throttle, 0.0f, 1.0f);
+
+    Serial.println( throttle);
+    return static_cast<uint16_t>(
+        1000.0f + throttle * 1000.0f
+    );
+}

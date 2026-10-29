@@ -1,10 +1,8 @@
 
 #include <Arduino.h>
-#include "config.h"
-#include "debug.h"
 
-constexpr int RX_PIN = RADIO_UART_RX_PIN;
-constexpr int TX_PIN = RADIO_UART_TX_PIN;
+constexpr int RX_PIN = 20;
+constexpr int TX_PIN = 21;
 
 HardwareSerial ReceiverSerial(1);
 
@@ -75,7 +73,6 @@ void initReceiver() {
         TX_PIN
     );
 
-    DEBUG_PRINTLN("CRSF channel decoder started");
 }
 
 uint16_t* updateChanels() {
@@ -114,16 +111,20 @@ uint16_t* updateChanels() {
                     lastPrint = millis();
 
                     for (int ch = 0; ch < 16; ch++) {
-                        DEBUG_PRINT("CH"+(ch + 1));
-                        DEBUG_PRINT(":"+channels[ch]);
+                        Serial.printf(
+                            "CH%02d:%4u ",
+                            ch + 1,
+                            channels[ch]
+                        );
                     }
 
-                    DEBUG_PRINTLN();
+                    Serial.println();
                 }
             }
 
             framePos = 0;
         }
     }
+
     return channels;
 }

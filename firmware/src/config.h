@@ -38,8 +38,8 @@
 #define RADIO_UART_TX_PIN 21
 
 // chanel mapping
-#define THROTTLE_CHANELL = 1;
-#define YAW_CHANELL = 2;
-#define PITCH_CHANELL = 3;
-#define ROLL_CHANELL = 4;
-#define ARM_CHANELL = 5;
+#define THROTLE_CHANEL 3
+#define YAW_CHANEL 4
+#define PITCH_CHANEL 2
+#define ROLL_CHANEL 1
+#define ARM_CHANEL 5
